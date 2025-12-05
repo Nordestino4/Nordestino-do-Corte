@@ -31,6 +31,22 @@ body{
 
 html{ scroll-behavior:smooth }
 
+/* BOTÃO STATUS (rodapé) */
+.status-loja {
+  width: 220px;
+  display: inline-block;
+  padding: 12px 18px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  transition: .18s;
+  border: 0;
+}
+.status-aberto { background: #36a66a; box-shadow: 0 6px 18px rgba(54,166,106,0.18); }
+.status-fechado { background: #d32f2f; box-shadow: 0 6px 18px rgba(211,47,47,0.18); }
+
 /* HEADER */
 header{
   background:var(--dark);
@@ -408,74 +424,112 @@ footer{
 </div>
 </main>
 
+<!-- FOOTER COM BOTÃO DE STATUS -->
+<footer>
+  <div class="wrap" style="text-align:center;">
+
+    <h3>Status da Barbearia</h3>
+
+    <button id="statusLoja"
+      style="
+        padding:14px 30px;
+        font-size:22px;
+        font-weight:800;
+        border:none;
+        border-radius:8px;
+        cursor:default;
+        color:white;
+        margin-top:10px;
+      ">
+      Carregando...
+    </button>
+
+    <div id="mensagemFechado" style="
+        font-size:14px;
+        margin-top:6px;
+        color:#d32f2f;
+        font-weight:600;
+        display:none;
+    ">
+      Voltamos já!
+    </div>
+
+  </div>
+</footer>
+
+
 <!-- ================================
           SCRIPT FINAL
 ================================ -->
 <script>
+document.addEventListener("DOMContentLoaded", function(){
 
-// Criador de horários automáticos
-function gerarHorarios(inicio, fim) {
-  const horarios = [];
-  let [h, m] = inicio.split(":").map(Number);
+  // ====== GERAR HORÁRIOS DINÂMICOS (intervalo 20min) ======
+  function gerarHorarios(inicio, fim) {
+    const horarios = [];
+    let [h, m] = inicio.split(":").map(Number);
 
-  while (`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}` <= fim) {
-    horarios.push(`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`);
-
-    m += 20;
-    if (m >= 60) {
-      m = 0;
-      h++;
+    function formatHHMM(h,m){
+      return `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}`;
     }
-  }
-  return horarios;
-}
 
-const inputData = document.getElementById("data");
-const selectHora = document.getElementById("hora");
-
-inputData.addEventListener("change", function () {
-  const data = new Date(this.value + "T00:00:00");
-
-  if (isNaN(data.getTime())) return;
-
-  const dia = data.getDay();
-
-  let abre = null, fecha = null;
-
-  if (dia >= 1 && dia <= 5) {
-    abre = "14:00";
-    fecha = "19:00";
-  } else if (dia === 6) {
-    abre = "10:00";
-    fecha = "19:00";
-  } else {
-    selectHora.innerHTML = "<option value=''>Fechado aos domingos</option>";
-    selectHora.disabled = true;
-    return;
+    // adiciona enquanto menor ou igual a fim
+    while (formatHHMM(h,m) <= fim) {
+      horarios.push(formatHHMM(h,m));
+      m += 20;
+      if (m >= 60) { m = 0; h++; }
+    }
+    return horarios;
   }
 
-  selectHora.disabled = false;
-  selectHora.innerHTML = "";
+  const inputData = document.getElementById("data");
+  const selectHora = document.getElementById("hora");
 
-  gerarHorarios(abre, fecha).forEach(h => {
-    const op = document.createElement("option");
-    op.value = op.textContent = h;
-    selectHora.appendChild(op);
+  inputData.addEventListener("change", function () {
+    const data = new Date(this.value + "T00:00:00");
+    if (isNaN(data.getTime())) return;
+
+    const dia = data.getDay(); // 0 dom / 1 seg ... 6 sab
+    let abre = null, fecha = null;
+
+    if (dia >= 1 && dia <= 5) { // seg-sex
+      abre = "14:00"; fecha = "19:00";
+    } else if (dia === 6) { // sábado
+      abre = "10:00"; fecha = "19:00";
+    } else { // domingo
+      selectHora.innerHTML = "<option value=''>Fechado aos domingos</option>";
+      selectHora.disabled = true;
+      return;
+    }
+
+    selectHora.disabled = false;
+    selectHora.innerHTML = "";
+
+    gerarHorarios(abre, fecha).forEach(h => {
+      const op = document.createElement("option");
+      op.value = op.textContent = h;
+      selectHora.appendChild(op);
+    });
   });
-});
 
-// Enviar para WhatsApp
-document.getElementById("formAgendamento").addEventListener("submit", function(e){
-  e.preventDefault();
+  // ====== ENVIO PARA WHATSAPP ======
+  const form = document.getElementById("formAgendamento");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
 
-  let nome = nome.value;
-  let telefone = telefone.value;
-  let servico = servico.value;
-  let data = inputData.value;
-  let hora = selectHora.value;
+    const nome = document.getElementById("nome").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const servico = document.getElementById("servico").value;
+    const data = inputData.value;
+    const hora = selectHora.value;
 
-  let mensagem =
-  `Olá! Gostaria de agendar um horário 🙌
+    if(!nome || !telefone || !servico || !data || !hora){
+      alert("Preencha todos os campos antes de enviar.");
+      return;
+    }
+
+    const mensagem =
+`Olá! Gostaria de agendar um horário 🙌
 
 👤 Nome: ${nome}
 📱 Telefone: ${telefone}
@@ -483,11 +537,60 @@ document.getElementById("formAgendamento").addEventListener("submit", function(e
 📅 Data: ${data}
 ⏰ Hora: ${hora}`;
 
-  window.location.href =
-    "https://api.whatsapp.com/send?phone=5584996295841&text=" +
-    encodeURIComponent(mensagem);
-});
+    const numeroBarbearia = "5584996295841";
+    const linkWhats = "https://api.whatsapp.com/send?phone=" + numeroBarbearia + "&text=" + encodeURIComponent(mensagem);
 
+    // abre o WhatsApp com a mensagem formatada
+    window.location.href = linkWhats;
+  });
+
+
+  // ====== BOTÃO ABERTO / FECHADO (rodapé) ======
+  const statusBtn = document.getElementById("statusLoja");
+
+  function atualizarStatusLoja() {
+  const btn = document.getElementById("statusLoja");
+  const msg = document.getElementById("mensagemFechado");
+
+  const agora = new Date();
+  const dia = agora.getDay();
+  const hora = agora.getHours();
+  const min = agora.getMinutes();
+
+  let aberto = false;
+
+  // Segunda a Sexta (14h às 19h)
+  if (dia >= 1 && dia <= 5) {
+    if (hora > 14 && hora < 19) aberto = true;
+    if (hora === 14 && min >= 0) aberto = true;
+    if (hora === 19 && min === 0) aberto = true;
+  }
+
+  // Sábado (10h às 19h)
+  if (dia === 6) {
+    if (hora > 10 && hora < 19) aberto = true;
+    if (hora === 10 && min >= 0) aberto = true;
+    if (hora === 19 && min === 0) aberto = true;
+  }
+
+  if (aberto) {
+    btn.textContent = "ABERTO";
+    btn.style.background = "#36a66a";
+    msg.style.display = "none";  // some o 'voltamos já'
+  } else {
+    btn.textContent = "FECHADO";
+    btn.style.background = "#d32f2f";
+    msg.style.display = "block"; // aparece o 'voltamos já'
+  }
+}
+
+// Atualiza ao carregar
+atualizarStatusLoja();
+
+// Atualiza automaticamente a cada 60 segundos
+setInterval(atualizarStatusLoja, 60000);
+
+}); // DOMContentLoaded
 </script>
 
 </body>
