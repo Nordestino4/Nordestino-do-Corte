@@ -7,6 +7,9 @@
 <meta name="description" content="Barbearia Nordestino do Corte - cortes, barba e estilo em Jucurutu - RN" />
 
 <style>
+/* ================================
+      VARIÁVEIS E ESTILOS GERAIS
+================================= */
 :root{
   --bg:#f4f1ef;
   --dark:#0b0b0b;
@@ -17,128 +20,202 @@
   --container:1100px;
   font-family: 'Helvetica Neue', Arial, sans-serif;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#222}
 
-html{scroll-behavior:smooth}
+*{ box-sizing:border-box }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:#222;
+}
+
+html{ scroll-behavior:smooth }
 
 /* HEADER */
-header{background:var(--dark);color:#fff;padding:26px 0 20px;border-bottom:6px solid var(--accent)}
-.wrap{width:90%;max-width:var(--container);margin:0 auto}
-.brand{display:flex;align-items:center;gap:22px}
-.logo{width:120px;height:120px;background:#111;border-radius:6px;display:flex;align-items:center;justify-content:center}
-.logo img{max-width:100%;max-height:100%}
-.brand h1{font-size:40px;line-height:1;margin:0;font-weight:800}
-nav ul{list-style:none;margin:8px 0 0;padding:0;display:flex;gap:14px}
-nav a{color:#fff;text-decoration:none;padding:6px 10px;border-radius:4px;font-weight:600}
-nav a:hover{background:rgba(255,255,255,.1)}
+header{
+  background:var(--dark);
+  color:#fff;
+  padding:26px 0 20px;
+  border-bottom:6px solid var(--accent);
+}
+
+.wrap{
+  width:90%;
+  max-width:var(--container);
+  margin:0 auto;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.logo{
+  width:120px;
+  height:120px;
+  background:#111;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.logo img{
+  max-width:100%;
+  max-height:100%;
+}
+
+.brand h1{
+  font-size:40px;
+  line-height:1;
+  margin:0;
+  font-weight:800;
+}
+
+nav ul{
+  list-style:none;
+  margin:8px 0 0;
+  padding:0;
+  display:flex;
+  gap:14px;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:4px;
+  font-weight:600;
+}
+
+nav a:hover{
+  background:rgba(255,255,255,.1);
+}
 
 /* HERO */
-.hero{display:flex;gap:30px;padding:36px 0}
-.left,.right{background:#fff;padding:18px;border-radius:6px}
-.left{width:320px}
-.left img{width:100%;height:340px;object-fit:cover;border-radius:4px}
-.right{flex:1;padding:28px}
+.hero{
+  display:flex;
+  gap:30px;
+  padding:36px 0;
+}
 
-.section-title{color:#777;letter-spacing:1px}
-.about p{line-height:1.5;color:#444}
-.meta{color:var(--muted);font-size:14px}
+.left,
+.right{
+  background:#fff;
+  padding:18px;
+  border-radius:6px;
+}
 
-/* SERVICES */
-.services{margin:46px 0;text-align:center}
+/* LEFT */
+.left{
+  width:320px;
+}
 
-/* SECTIONS */
-.location{background:#fff;padding:18px;margin:28px 0;border-radius:6px}
-.map{height:300px;border-radius:6px;overflow:hidden}
+.left img{
+  width:100%;
+  height:340px;
+  object-fit:cover;
+  border-radius:4px;
+}
 
+/* RIGHT */
+.right{
+  flex:1;
+  padding:28px;
+}
+
+.section-title{
+  color:#777;
+  letter-spacing:1px;
+}
+
+.about p{
+  line-height:1.5;
+  color:#444;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* SERVIÇOS */
+.services{
+  margin:46px 0;
+  text-align:center;
+}
+
+/* LOCALIZAÇÃO */
+.location{
+  background:#fff;
+  padding:18px;
+  margin:28px 0;
+  border-radius:6px;
+}
+
+.map{
+  height:300px;
+  border-radius:6px;
+  overflow:hidden;
+}
+
+/* REDES SOCIAIS */
 .center{text-align:center}
 .muted{color:var(--muted)}
 
-/* BUTTONS */
-.contact-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.contact-buttons{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
 
 .social-btn{
- min-width:160px;
- padding:12px 22px;
- border-radius:30px;
- text-decoration:none;
- color:#fff;
- font-weight:700;
- transition:.2s;
- box-shadow:0 4px 10px rgba(0,0,0,.15);
+  min-width:160px;
+  padding:12px 22px;
+  border-radius:30px;
+  text-decoration:none;
+  color:#fff;
+  font-weight:700;
+  transition:.2s;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
+
 .social-btn:hover{
- transform:translateY(-3px) scale(1.04);
- box-shadow:0 8px 16px rgba(0,0,0,.25);
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 8px 16px rgba(0,0,0,.25);
 }
 
 .instagram{
- background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5);
+  background:linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5);
 }
-.whatsapp{background:#25D366}
+
+.whatsapp{
+  background:#25D366;
+}
 
 .yellow-btn{
- background:var(--accent);
- color:#000;
- border-radius:6px;
- border:none;
- cursor:pointer;
- font-weight:bold;
- padding:12px;
+  background:var(--accent);
+  color:#000;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+  padding:12px;
 }
+
 .yellow-btn:hover{
- transform:translateY(-2px);
+  transform:translateY(-2px);
 }
 
-/* AGENDAMENTO */
-.agendamento-form{
- display:grid;
- gap:12px;
- max-width:500px;
-}
-
-.agendamento-form input,
-.agendamento-form select,
-.agendamento-form textarea{
- padding:10px;
- border:1px solid #ccc;
- border-radius:4px;
- font-size:14px;
-}
-
-.agendamento-form textarea{
- resize:none;
- height:90px;
-}
-
-footer{
- background:var(--dark);
- color:#fff;
- padding:28px 0;
- margin-top:40px;
-}
-
-@media(max-width:900px){
- .hero{flex-direction:column}
- .left{width:100%}
-}
-
-@media(max-width:560px){
- nav ul{flex-wrap:wrap}
- .brand h1{font-size:26px}
-}
-/* --------- AJUSTE VISUAL DO AGENDAMENTO --------- */
-
+/* FORMULÁRIO */
 #agendamento{
   background:#fff;
   border-radius:12px;
   padding:24px;
   border:2px solid #000;
-}
-
-#agendamento h2{
-  margin-top:0;
-  margin-bottom:18px;
 }
 
 .agendamento-form{
@@ -148,8 +225,17 @@ footer{
 }
 
 .agendamento-form input,
-.agendamento-form select{
-  width:100%;
+.agendamento-form select,
+.agendamento-form textarea{
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:4px;
+  font-size:14px;
+}
+
+.agendamento-form textarea{
+  resize:none;
+  height:90px;
 }
 
 .agendamento-form button{
@@ -157,13 +243,26 @@ footer{
   margin-top:8px;
 }
 
-/* Responsivo */
+footer{
+  background:var(--dark);
+  color:#fff;
+  padding:28px 0;
+  margin-top:40px;
+}
+
+/* RESPONSIVO */
+@media(max-width:900px){
+  .hero{flex-direction:column}
+  .left{width:100%}
+}
+
 @media(max-width:600px){
+  nav ul{flex-wrap:wrap}
+  .brand h1{font-size:26px}
   .agendamento-form{
     grid-template-columns:1fr;
   }
 }
-
 </style>
 </head>
 
@@ -173,10 +272,12 @@ footer{
 <div class="wrap">
  <div class="brand">
    <div class="logo">
-     <img src="logobarbearia.jpg" alt="Logo">
+     <img src="logobarbearia.jpg" alt="Logo da Barbearia">
    </div>
+
    <div>
      <h1>Barbearia Nordestino<br>do Corte</h1>
+
      <nav>
       <ul>
         <li><a href="#">Início</a></li>
@@ -203,20 +304,23 @@ footer{
 
  <article class="right" id="sobre">
   <h2 class="section-title">SOBRE NÓS</h2>
+
   <div class="about">
     <h3 style="margin:6px 0 12px;color:var(--green)">🌵 Nordestino do Corte</h3>
+
     <p>
-      Bem-vindo à Barbearia Nordestino do Corte, o ponto certo para quem busca estilo, qualidade e aquele atendimento arretado em Jucurutu-RN. Aqui tradição e modernidade se encontram: oferecemos cortes clássicos e modernos, barba bem feita e o cuidado que você merece.
+      Bem-vindo à Barbearia Nordestino do Corte, o ponto certo para quem busca estilo, qualidade e aquele atendimento arretado em Jucurutu-RN. Aqui tradição e modernidade se encontram.
     </p>
+
     <p class="meta">
-      Nosso objetivo é fazer com que cada cliente saia renovado, confiante e satisfeito. Valorizamos o bom papo, o ambiente acolhedor e o orgulho de representar o espírito nordestino.
+      Nosso objetivo é fazer com que cada cliente saia renovado, confiante e satisfeito.
     </p>
 
-    <p style="margin-top:12px"><strong>Horário de funcionamento:</strong><br/>
-    Segunda a Sexta: 14h00 às 19h00<br/>
-    Sábado: 10h00 às 19h00</p>
-
-    <p class="muted" style="margin-top:10px">Venha viver a experiência Nordestino do Corte!</p>
+    <p style="margin-top:12px">
+      <strong>Horário de funcionamento:</strong><br>
+      Segunda a Sexta: 14h00 às 19h00<br>
+      Sábado: 10h00 às 19h00
+    </p>
   </div>
  </article>
 </section>
@@ -227,8 +331,11 @@ footer{
  <a class="social-btn instagram" href="index2.html">
  📸 Galeria de Fotos
  </a>
+</section>
+
 <section id="localizacao" class="location">
  <h2 class="section-title">Localização 📍</h2>
+
  <p class="muted">
   R. Ver. Augusto Queiroz, 13 - Jucurutu - RN, 59330-000
  </p>
@@ -240,7 +347,8 @@ footer{
    height="100%"
    style="border:0;"
    allowfullscreen
-   loading="lazy"></iframe>
+   loading="lazy">
+  </iframe>
  </div>
 </section>
 
@@ -258,16 +366,18 @@ footer{
    💬 WhatsApp
   </a>
  </div>
- <section id="agendamento" style="max-width:520px;margin:40px auto;padding:20px;border:2px solid #000;border-radius:10px;">
+</section>
+
+<section id="agendamento" style="max-width:520px;margin:40px auto;">
   
   <h2 style="text-align:center;">📅 Agende seu horário</h2>
 
   <form id="formAgendamento" class="agendamento-form">
 
     <input type="text" id="nome" placeholder="Seu nome" required>
-  
+
     <input type="tel" id="telefone" placeholder="Seu WhatsApp" required>
-  
+
     <select id="servico" required>
       <option value="Degradê">Degradê – R$25</option>
       <option value="Social">Social – R$20</option>
@@ -280,58 +390,105 @@ footer{
       <option value="Pézinho">Pézinho – R$5</option>
       <option value="Riscos">Riscos – R$5</option>
       <option value="Sobrancelha">Sobrancelha – R$5</option>
-    
       <option value="Desenhos/Riscos">Desenhos/Riscos – R$5</option>
     </select>
-  
-    <input type="date" id="data" required>
-  
-    <input type="time" id="hora" required>
-  
-    <button type="submit" class="yellow-btn">
-      ✅ Confirmar Agendamento
-    </button>
-  
-  </form>
-  </section>
-<script>
-  document.getElementById("formAgendamento").addEventListener("submit", function(e){
-    e.preventDefault();
-  
-    var nome     = document.getElementById("nome").value.trim();
-    var telefone = document.getElementById("telefone").value.trim();
-    var servico  = document.getElementById("servico").value;
-    var data     = document.getElementById("data").value;
-    var hora     = document.getElementById("hora").value;
-  
-    if(!nome || !telefone || !servico || !data || !hora){
-      alert("Preencha todos os campos antes de enviar.");
-      return;
-    }
-  
-    var mensagem = 
-  "Olá! Gostaria de agendar um horário 🙌\n\n" +
-  "👤 Nome: " + nome + "\n" +
-  "📱 Telefone: " + telefone + "\n" +
-  "✂️ Serviço: " + servico + "\n" +
-  "📅 Data: " + data + "\n" +
-  "⏰ Hora: " + hora;
-  
-    var numeroBarbearia = "5584996295841";
-  
-    var linkWhats =
-    "https://api.whatsapp.com/send?phone=" +
-    numeroBarbearia +
-    "&text=" +
-    encodeURIComponent(mensagem);
-  
-    // redirecionamento garantido (sem bloqueio de popup)
-    window.location.href = linkWhats;
-  });
-  </script>
-  
-  
 
+    <input type="date" id="data" required>
+
+    <!-- HORÁRIOS DINÂMICOS -->
+    <select id="hora" required disabled>
+      <option value="">Selecione uma data primeiro</option>
+    </select>
+
+    <button type="submit" class="yellow-btn">✅ Confirmar Agendamento</button>
+
+  </form>
+</section>
+
+</div>
+</main>
+
+<!-- ================================
+          SCRIPT FINAL
+================================ -->
+<script>
+
+// Criador de horários automáticos
+function gerarHorarios(inicio, fim) {
+  const horarios = [];
+  let [h, m] = inicio.split(":").map(Number);
+
+  while (`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}` <= fim) {
+    horarios.push(`${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`);
+
+    m += 20;
+    if (m >= 60) {
+      m = 0;
+      h++;
+    }
+  }
+  return horarios;
+}
+
+const inputData = document.getElementById("data");
+const selectHora = document.getElementById("hora");
+
+inputData.addEventListener("change", function () {
+  const data = new Date(this.value + "T00:00:00");
+
+  if (isNaN(data.getTime())) return;
+
+  const dia = data.getDay();
+
+  let abre = null, fecha = null;
+
+  if (dia >= 1 && dia <= 5) {
+    abre = "14:00";
+    fecha = "19:00";
+  } else if (dia === 6) {
+    abre = "10:00";
+    fecha = "19:00";
+  } else {
+    selectHora.innerHTML = "<option value=''>Fechado aos domingos</option>";
+    selectHora.disabled = true;
+    return;
+  }
+
+  selectHora.disabled = false;
+  selectHora.innerHTML = "";
+
+  gerarHorarios(abre, fecha).forEach(h => {
+    const op = document.createElement("option");
+    op.value = op.textContent = h;
+    selectHora.appendChild(op);
+  });
+});
+
+// Enviar para WhatsApp
+document.getElementById("formAgendamento").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let nome = nome.value;
+  let telefone = telefone.value;
+  let servico = servico.value;
+  let data = inputData.value;
+  let hora = selectHora.value;
+
+  let mensagem =
+  `Olá! Gostaria de agendar um horário 🙌
+
+👤 Nome: ${nome}
+📱 Telefone: ${telefone}
+✂️ Serviço: ${servico}
+📅 Data: ${data}
+⏰ Hora: ${hora}`;
+
+  window.location.href =
+    "https://api.whatsapp.com/send?phone=5584996295841&text=" +
+    encodeURIComponent(mensagem);
+});
+
+</script>
 
 </body>
 </html>
