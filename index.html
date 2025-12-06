@@ -7,6 +7,16 @@
 <meta name="description" content="Barbearia Nordestino do Corte - cortes, barba e estilo em Jucurutu - RN" />
 
 <style>
+  @keyframes piscar {
+  0% { opacity: 1; }
+  50% { opacity: 0.45; }
+  100% { opacity: 1; }
+}
+
+.botao-piscando {
+  animation: piscar 1s infinite;
+}
+
 /* ================================
       VARIÁVEIS E ESTILOS GERAIS
 ================================= */
@@ -573,15 +583,27 @@ document.addEventListener("DOMContentLoaded", function(){
     if (hora === 19 && min === 0) aberto = true;
   }
 
-  if (aberto) {
+if (aberto) {
     btn.textContent = "ABERTO";
     btn.style.background = "#36a66a";
-    msg.style.display = "none";  // some o 'voltamos já'
-  } else {
+
+    // Ativa o piscar
+    btn.classList.add("botao-piscando");
+
+    // Some com "Voltamos já"
+    msg.style.display = "none";
+
+} else {
     btn.textContent = "FECHADO";
     btn.style.background = "#d32f2f";
-    msg.style.display = "block"; // aparece o 'voltamos já'
-  }
+
+    // Remove o piscar
+    btn.classList.remove("botao-piscando");
+
+    // Mostra "Voltamos já"
+    msg.style.display = "block";
+}
+
 }
 
 // Atualiza ao carregar
